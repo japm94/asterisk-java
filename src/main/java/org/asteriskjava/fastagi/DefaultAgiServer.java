@@ -46,12 +46,15 @@ public class DefaultAgiServer extends AbstractAgiServer implements AgiServer
     /**
      * The default name of the resource bundle that contains the config.
      */
-    private static final String DEFAULT_CONFIG_RESOURCE_BUNDLE_NAME = "fastagi";
+    private /*@ spec_public @*/ static final String DEFAULT_CONFIG_RESOURCE_BUNDLE_NAME = "fastagi";
 
     /**
      * The default bind port.
      */
-    private static final int DEFAULT_BIND_PORT = 4573;
+    private /*@ spec_public @*/ static final int DEFAULT_BIND_PORT = 4573;
+    
+    //@ invariant this.DEFAULT_CONFIG_RESOURCE_BUNDLE_NAME == "fastagi";
+    //@ invariant this.DEFAULT_BIND_PORT == 4573;
 
     /** Default 50? Windows server max 200? */
     private static final int BACKLOG = 200;
@@ -59,8 +62,8 @@ public class DefaultAgiServer extends AbstractAgiServer implements AgiServer
     private ServerSocketFacade serverSocket;
 
     private String configResourceBundleName = DEFAULT_CONFIG_RESOURCE_BUNDLE_NAME;
-    private int port = DEFAULT_BIND_PORT;
-    private InetAddress address = null;
+    private /*@ spec_public @*/ int port = DEFAULT_BIND_PORT;
+    private /*@ spec_public @*/ InetAddress address = null;
 
     /**
      * Creates a new DefaultAgiServer.
@@ -218,6 +221,8 @@ public class DefaultAgiServer extends AbstractAgiServer implements AgiServer
      * @return the TCP port this server is configured to bind to.
      * @since 1.0.0
      */
+    
+    //@ ensures \result == this.port;
     public int getPort()
     {
         return port;
@@ -228,6 +233,8 @@ public class DefaultAgiServer extends AbstractAgiServer implements AgiServer
      * 
      * @return the address this server is configured to bind to.
      */
+    
+    //@ ensures \result == this.address;
     public InetAddress getAddress()
     {
         return address;

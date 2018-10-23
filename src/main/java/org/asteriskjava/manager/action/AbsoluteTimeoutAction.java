@@ -58,9 +58,7 @@ public class AbsoluteTimeoutAction extends AbstractManagerAction
      * @param timeout the maximum duation of the call in seconds or 0 to cancel the AbsoluteTimeout
      * @since 0.2
      */
-    
-    //@ requires channel != null;
-    //@ requires timeout != null;
+ 
     public AbsoluteTimeoutAction(String channel, Integer timeout)
     {
         this.channel = channel;
